@@ -30,6 +30,7 @@ public class App {
             case 2: problem = new Euler002(); break;
             case 3: problem = new Euler003(); break;
             case 4: problem = new Euler004(); break;
+            case 5: problem = new Euler005(); break;
             default:
                 System.out.println(
                     BLUE + String.format("Problem ID #%d: ", problem_id) +
