@@ -26,6 +26,7 @@ public class App {
         case 1: problem = new Euler001(); break;
         case 2: problem = new Euler002(); break;
         case 3: problem = new Euler003(); break;
+        case 4: problem = new Euler004(); break;
         default:
             System.err.format("ERROR: Problem ID #%d does not exist.\n", problem_id);
             return;

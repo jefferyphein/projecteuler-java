@@ -5,7 +5,7 @@ import static org.junit.Assert.*;
 import org.junit.Test;
 
 /**
- * Unit tests for Project Euler problems and libraries.
+ * Unit tests for Project Euler problems.
  */
 public class AppTest {
     @Test
@@ -21,5 +21,10 @@ public class AppTest {
     @Test
     public void verifyProblem003() {
         assertEquals(new Euler003().run(), "6857");
+    }
+
+    @Test
+    public void verifyProblem004() {
+        assertEquals(new Euler004().run(), "906609");
     }
 }
