@@ -1,0 +1,15 @@
+/*
+ * COPY PROBLEM DESCRIPTION HERE
+ */
+
+package projecteuler.app;
+
+public final class Euler### implements Euler {
+    public static void main(String[] args) {
+        System.out.println(new Euler###().run());
+    }
+
+    public String run() {
+        // PROBLEM SOLUTION GOES HERE
+    }
+}
