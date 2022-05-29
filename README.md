@@ -12,6 +12,7 @@ and run it with Maven. For example, to build and run the unit tests:
 To run the first six Project Euler problems in an interactive shell:
 
     podman run -it -v "$PWD":/usr/src/euler:Z -w /usr/src/euler maven:latest /bin/bash
+
     mvn clean compile assembly:single
     java -jar target/projecteuler-1.0-SNAPSHOT-jar-with-dependencies.jar 1 2 3..6
 
@@ -28,6 +29,8 @@ projecteuler-java
 │   .gitignore      # Ignore project build and development artifacts.
 │   README.md       # This file.
 │   pom.xml         # Project Object Model file for this project.
+│
+└───data            # Input data used by problems.
 │
 └───src
     └───main
