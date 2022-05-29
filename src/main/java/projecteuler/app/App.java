@@ -24,6 +24,7 @@ public class App {
         case 5: problem = new Euler005(); break;
         case 6: problem = new Euler006(); break;
         case 7: problem = new Euler007(); break;
+        case 8: problem = new Euler008(); break;
         default:
             System.out.println(
                 BLUE + String.format("Problem ID #%d: ", problem_id) +
