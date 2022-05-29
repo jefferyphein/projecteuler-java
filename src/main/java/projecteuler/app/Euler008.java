@@ -39,43 +39,20 @@ public final class Euler008 implements Euler {
 
     public static long maxAdjacentProduct(String line, int length) {
         long answer = 0;
-        long product = 1;
-        int zeroes = 0;
 
         long[] digits = new long[line.length()];
         for (int i=0; i<line.length(); i++) {
             digits[i] = Character.digit(line.charAt(i), 10);
         }
 
-        for (int i=0; i<length; i++) {
-            if (digits[i] == 0) {
-                zeroes++;
-            }
-            else {
-                product *= digits[i];
-            }
-        }
-
-        if (zeroes == 0) {
-            answer = product;
-        }
-
-        for (int i=length; i<digits.length; i++) {
-            if (digits[i-length] == 0) {
-                zeroes--;
-            }
-            else {
-                product /= digits[i-length];
+        for (int i=0; i<digits.length-length; i++) {
+            long product = 1;
+            for (int j=0; j<length; j++) {
+                product *= digits[i+j];
             }
 
-            if (digits[i] == 0) {
-                zeroes++;
-            }
-            else {
-                product *= digits[i];
-                if (zeroes == 0 && product > answer) {
-                    answer = product;
-                }
+            if (product > answer) {
+                answer = product;
             }
         }
 
