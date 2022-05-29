@@ -3,36 +3,44 @@ package projecteuler.app;
 /**
  * Problem launcher application.
  *
- * The first positional argument to the entry point main() function is the
- * Project Euler problem to run. Each problem returns a String representation
- * of its solution, which is then printed to stdout.
- *
- * If an invalid problem ID is provided, an error will be displayed.
+ * Run and display the solution to each Project Euler problem ID provided as
+ * a positional argument to the main() entry point.
  */
 public class App {
+    public static final String RESET = "\u001B[0m";
+    public static final String RED = "\u001B[31m";
+    public static final String GREEN = "\u001B[32m";
+    public static final String BLUE = "\u001B[34m";
+
     public static void main( String[] args ) {
         // Provide usage message if no arguments are provided.
         if (args.length == 0) {
-            System.err.println("Usage: app <problem-id>");
+            System.err.println("Usage: app <problem-id> [<problem-id> [...]]");
             return;
         }
 
-        // Convert positional argument to problem ID.
-        int problem_id = Integer.parseInt(args[0]);
-        Euler problem = null;
+        for (int i=0; i<args.length; i++) {
+            // Convert positional argument to problem ID.
+            int problem_id = Integer.parseInt(args[i]);
+            Euler problem = null;
 
-        // Create problem class from problem ID.
-        switch (problem_id) {
-        case 1: problem = new Euler001(); break;
-        case 2: problem = new Euler002(); break;
-        case 3: problem = new Euler003(); break;
-        case 4: problem = new Euler004(); break;
-        default:
-            System.err.format("ERROR: Problem ID #%d does not exist.\n", problem_id);
-            return;
+            // Create problem class from problem ID.
+            switch (problem_id) {
+            case 1: problem = new Euler001(); break;
+            case 2: problem = new Euler002(); break;
+            case 3: problem = new Euler003(); break;
+            case 4: problem = new Euler004(); break;
+            default:
+                System.out.println(
+                    BLUE + String.format("Problem ID #%d: ", problem_id) +
+                    RED + "does not exist" + RESET);
+                continue;
+            }
+
+            // Run the selected problem and display the answer.
+            System.out.println(
+                BLUE + String.format("Problem ID #%d: ", problem_id) +
+                GREEN + problem.run() + RESET);
         }
-
-        // Run the selected problem and display the answer.
-        System.out.println(problem.run());
     }
 }
