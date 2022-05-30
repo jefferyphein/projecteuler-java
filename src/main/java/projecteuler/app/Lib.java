@@ -26,6 +26,23 @@ public class Lib {
         return lines;
     }
 
+    public static long maxAdjacentProduct(int[] numbers, int length) {
+        long answer = 0;
+
+        for (int i=0; i<=Math.max(numbers.length-length, 0); i++) {
+            long product = 1;
+            for (int j=i; j<Math.min(i+length, numbers.length); j++) {
+                product *= (long)numbers[j];
+            }
+
+            if (product > answer) {
+                answer = product;
+            }
+        }
+
+        return answer;
+    }
+
     public static int[] primesUpTo(int upto) {
         // No primes less than 2.
         if (upto < 2) {
