@@ -17,15 +17,15 @@ public class App {
 
         // Create problem class from problem ID.
         switch (problem_id) {
-        case 1: problem = new Euler001(); break;
-        case 2: problem = new Euler002(); break;
-        case 3: problem = new Euler003(); break;
-        case 4: problem = new Euler004(); break;
-        case 5: problem = new Euler005(); break;
-        case 6: problem = new Euler006(); break;
-        case 7: problem = new Euler007(); break;
-        case 8: problem = new Euler008(); break;
-        case 9: problem = new Euler009(); break;
+        case 1:   problem = new Euler001(); break;
+        case 2:   problem = new Euler002(); break;
+        case 3:   problem = new Euler003(); break;
+        case 4:   problem = new Euler004(); break;
+        case 5:   problem = new Euler005(); break;
+        case 6:   problem = new Euler006(); break;
+        case 7:   problem = new Euler007(); break;
+        case 8:   problem = new Euler008(); break;
+        case 9:   problem = new Euler009(); break;
         default:
             System.out.println(
                 BLUE + String.format("Problem ID #%d: ", problem_id) +
