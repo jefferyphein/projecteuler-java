@@ -60,13 +60,12 @@ public final class Euler008 implements Euler {
     }
 
     public String run() {
-        try {
-            String number = String.join("", Lib.readLines("./data/008/input"));
-            return Long.toString(maxAdjacentProduct(number, 13));
-        }
-        catch (IOException e) {
-            System.err.println("Unable to open input file.");
+        Vector<String> lines = Lib.readLines("./data/008/input");
+        if (lines == null) {
             return null;
         }
+
+        String number = String.join("", lines);
+        return Long.toString(maxAdjacentProduct(number, 13));
     }
 }
