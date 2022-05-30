@@ -12,11 +12,14 @@ public class Lib {
         return strN.equals(new StringBuilder(strN).reverse().toString());
     }
 
-    public static Vector<String> readLines(String filename) throws IOException {
+    public static Vector<String> readLines(String filename) {
         Vector<String> lines = new Vector<String>();
 
         try (Stream<String> stream = Files.lines(Paths.get(filename))) {
             stream.forEach(s -> lines.addElement(s));
+        }
+        catch (IOException e) {
+            return null;
         }
 
         return lines;
