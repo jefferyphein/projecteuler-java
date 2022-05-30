@@ -37,35 +37,21 @@ public final class Euler008 implements Euler {
         System.out.println(new Euler008().run());
     }
 
-    public static long maxAdjacentProduct(String line, int length) {
-        long answer = 0;
-
-        long[] digits = new long[line.length()];
-        for (int i=0; i<line.length(); i++) {
-            digits[i] = Character.digit(line.charAt(i), 10);
-        }
-
-        for (int i=0; i<digits.length-length; i++) {
-            long product = 1;
-            for (int j=0; j<length; j++) {
-                product *= digits[i+j];
-            }
-
-            if (product > answer) {
-                answer = product;
-            }
-        }
-
-        return answer;
-    }
-
     public String run() {
         Vector<String> lines = Lib.readLines("./data/008/input");
         if (lines == null) {
             return null;
         }
 
+        // Concatenate all lines into a single 1000-digit number.
         String number = String.join("", lines);
-        return Long.toString(maxAdjacentProduct(number, 13));
+
+        // Convert 1000-digit number into array of digits.
+        int[] digits = new int[number.length()];
+        for (int i=0; i<number.length(); i++) {
+            digits[i] = Character.digit(number.charAt(i), 10);
+        }
+
+        return Long.toString(Lib.maxAdjacentProduct(digits, 13));
     }
 }
