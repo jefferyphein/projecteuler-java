@@ -28,6 +28,28 @@ public class LibTest {
     }
 
     @Test
+    public void testMaxAdjacentProductEmpty() {
+        int[] numbers = {};
+        assertEquals(Lib.maxAdjacentProduct(numbers, 1), 1);
+    }
+
+    @Test
+    public void testMaxAdjacentProductShort() {
+        int[] numbers = {2};
+        assertEquals(Lib.maxAdjacentProduct(numbers, 10), 2);
+    }
+
+    @Test
+    public void textMaxAdjacentProductLong() {
+        int[] numbers = {5,10,4,8,12,13,17,1,0};
+        assertEquals(Lib.maxAdjacentProduct(numbers, 1), 17);
+        assertEquals(Lib.maxAdjacentProduct(numbers, 2), 13*17);
+        assertEquals(Lib.maxAdjacentProduct(numbers, 3), 12*13*17);
+        assertEquals(Lib.maxAdjacentProduct(numbers, 4), 8*12*13*17);
+        assertEquals(Lib.maxAdjacentProduct(numbers, 25), 0);
+    }
+
+    @Test
     public void testPrimesUpToEmpty() {
         int[] primes = Lib.primesUpTo(1);
         assertEquals(primes.length, 0);
