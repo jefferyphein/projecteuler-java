@@ -47,4 +47,9 @@ public class AppTest {
     public void verifyProblem008() {
         assertEquals(new Euler008().run(), "23514624000");
     }
+
+    @Test
+    public void verifyProblem009() {
+        assertEquals(new Euler009().run(), "31875000");
+    }
 }
