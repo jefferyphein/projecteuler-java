@@ -3,7 +3,6 @@ package projecteuler.app;
 import static org.junit.Assert.*;
 
 import org.junit.Test;
-import java.util.Vector;
 
 /**
  * Unit tests for Project Euler library functions.
@@ -17,13 +16,13 @@ public class LibTest {
 
     @Test
     public void testReadLinesFileExists() {
-        Vector<String> lines = Lib.readLines("./data/008/input");
-        assertEquals(20, lines.size());
+        String[] lines = Lib.readLines("./data/008/input");
+        assertEquals(20, lines.length);
     }
 
     @Test
     public void testReadLinesFileDoesNotExist() {
-        Vector<String> lines = Lib.readLines("./data/does_not_exist");
+        String[] lines = Lib.readLines("./data/does_not_exist");
         assertEquals(null, lines);
     }
 
