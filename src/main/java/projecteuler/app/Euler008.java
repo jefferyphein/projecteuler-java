@@ -38,7 +38,7 @@ public final class Euler008 implements Euler {
     }
 
     public String run() {
-        Vector<String> lines = Lib.readLines("./data/008/input");
+        String[] lines = Lib.readLines("./data/008/input");
         if (lines == null) {
             return null;
         }
