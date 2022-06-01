@@ -13,7 +13,7 @@ public class Lib {
         return strN.equals(new StringBuilder(strN).reverse().toString());
     }
 
-    public static Vector<String> readLines(String filename) {
+    public static String[] readLines(String filename) {
         Vector<String> lines = new Vector<String>();
 
         try (Stream<String> stream = Files.lines(Paths.get(filename))) {
@@ -23,7 +23,7 @@ public class Lib {
             return null;
         }
 
-        return lines;
+        return lines.toArray(new String[lines.size()]);
     }
 
     public static long maxAdjacentProduct(int[] numbers, int length) {
