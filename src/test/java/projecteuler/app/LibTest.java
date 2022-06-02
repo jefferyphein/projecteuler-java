@@ -73,4 +73,91 @@ public class LibTest {
             assertEquals(truePrimes[i], primes[i]);
         }
     }
+
+    @Test
+    public void testPrimeFactorizationSquare() {
+        PrimePower[] facs = Lib.primeFactorization(100);
+        assertEquals(2, facs.length);
+        assertEquals(2, facs[0].prime);
+        assertEquals(2, facs[0].exp);
+        assertEquals(5, facs[1].prime);
+        assertEquals(2, facs[1].exp);
+    }
+
+    @Test
+    public void testPrimeFactorizationLCM() {
+        PrimePower[] facs = Lib.primeFactorization(2520);
+        assertEquals(4, facs.length);
+        assertEquals(2, facs[0].prime);
+        assertEquals(3, facs[0].exp);
+        assertEquals(3, facs[1].prime);
+        assertEquals(2, facs[1].exp);
+        assertEquals(5, facs[2].prime);
+        assertEquals(1, facs[2].exp);
+        assertEquals(7, facs[3].prime);
+        assertEquals(1, facs[3].exp);
+    }
+
+    @Test
+    public void testPrimeFactorizationPrime() {
+        PrimePower[] facs = Lib.primeFactorization(8675309);
+        assertEquals(1, facs.length);
+        assertEquals(8675309, facs[0].prime);
+        assertEquals(1, facs[0].exp);
+    }
+
+    @Test
+    public void testPrimeFactorizationOne() {
+        PrimePower[] facs = Lib.primeFactorization(1);
+        assertEquals(0, facs.length);
+    }
+
+    @Test
+    public void testTriangleNumbers() {
+        assertEquals(1, Lib.triangleNumber(1));
+        assertEquals(3, Lib.triangleNumber(2));
+        assertEquals(6, Lib.triangleNumber(3));
+        assertEquals(10, Lib.triangleNumber(4));
+        assertEquals(15, Lib.triangleNumber(5));
+        assertEquals(21, Lib.triangleNumber(6));
+        assertEquals(28, Lib.triangleNumber(7));
+    }
+
+    @Test
+    public void testNumDivisors() {
+        long[] primes = {2,3,5,7,11,13,17,19,23,29,31,37,41,43,47};
+        assertEquals(1, Lib.numDivisors(1));
+        for (long p : primes) {
+            assertEquals(2, Lib.numDivisors(p));
+            assertEquals(3, Lib.numDivisors(p*p));
+            assertEquals(4, Lib.numDivisors(p*p*p));
+        }
+
+        for (long p : primes) {
+            for (long q : primes) {
+                if (p <= q) continue;
+                assertEquals(4, Lib.numDivisors(p*q));
+                assertEquals(6, Lib.numDivisors(p*p*q));
+                assertEquals(9, Lib.numDivisors(p*p*q*q));
+            }
+        }
+
+        for (long p : primes) {
+            for (long q : primes) {
+                if (p <= q) continue;
+                for (long s : primes) {
+                    if (q <= s) continue;
+                    assertEquals(8, Lib.numDivisors(p*q*s));
+                    assertEquals(12, Lib.numDivisors(p*p*q*s));
+                    assertEquals(18, Lib.numDivisors(p*p*q*q*s));
+                    assertEquals(27, Lib.numDivisors(p*p*q*q*s*s));
+                    assertEquals(16, Lib.numDivisors(p*p*p*q*s));
+                    assertEquals(24, Lib.numDivisors(p*p*p*q*q*s));
+                    assertEquals(36, Lib.numDivisors(p*p*p*q*q*s*s));
+                    assertEquals(48, Lib.numDivisors(p*p*p*q*q*q*s*s));
+                    assertEquals(64, Lib.numDivisors(p*p*p*q*q*q*s*s*s));
+                }
+            }
+        }
+    }
 }

@@ -91,4 +91,76 @@ public class Lib {
                      .map(x -> 2*x+3)           // Convert index to prime.
         ).toArray();
     }
+
+    public static PrimePower[] primeFactorization(long N) {
+        Vector<PrimePower> facs = new Vector<PrimePower>();
+
+        // Remove powers of 2.
+        if (N % 2 == 0) {
+            PrimePower fac = new PrimePower(2, 1);
+            N /= 2;
+            while (N % 2 == 0) {
+                fac.exp++;
+                N /= 2;
+            }
+            facs.addElement(fac);
+        }
+
+        // Remove powers of 3.
+        if (N % 3 == 0) {
+            PrimePower fac = new PrimePower(3, 1);
+            N /= 3;
+            while (N % 3 == 0) {
+                fac.exp++;
+                N /= 3;
+            }
+            facs.addElement(fac);
+        }
+
+        // Set up the prime wheel.
+        int wheel = 1;
+        int index = 1;
+        int p = 5;
+
+        // Loop over all possible primes until we exhaust the factorization.
+        int upper = (int)Math.floor(Math.sqrt(N));
+        while (p <= upper) {
+            // Remove powers of p.
+            if (N % p == 0) {
+                PrimePower fac = new PrimePower(p, 1);
+                N /= p;
+                while (N % p == 0) {
+                    fac.exp++;
+                    N /= p;
+                }
+                facs.addElement(fac);
+
+                // Reset the upper bound.
+                upper = (int)Math.floor(Math.sqrt(N));
+            }
+
+            // Increment the wheel.
+            p += 2*wheel;
+            index += wheel;
+            wheel = 3-wheel;
+        }
+
+        // If there's anything left over, it's a singular prime.
+        if (N > 1) {
+            facs.addElement(new PrimePower(N, 1));
+        }
+
+        return facs.toArray(new PrimePower[facs.size()]);
+    }
+
+    public static int numDivisors(long n) {
+        PrimePower[] facs = primeFactorization(n);
+        return Stream.of(facs)
+                     .mapToInt(fac -> fac.exp+1)
+                     .reduce(1, (a, b) -> a * b);
+    }
+
+    public static long triangleNumber(long n) {
+        return n*(n+1)/2;
+    }
 }
