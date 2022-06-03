@@ -22,9 +22,8 @@ public final class Euler013 implements Euler {
               .reduce(new BigInteger("0"), (a, b) -> a.add(b));
 
         BigInteger pow10 = new BigInteger("10000000000");
-        BigInteger ten = new BigInteger("10");
         while (total.compareTo(pow10) >= 0) {
-            total = total.divide(ten);
+            total = total.divide(BigInteger.TEN);
         }
         return total.toString(10);
     }
