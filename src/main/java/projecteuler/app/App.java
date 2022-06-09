@@ -1,5 +1,14 @@
 package projecteuler.app;
 
+import java.util.Map;
+import java.util.HashMap;
+
+import org.apache.logging.log4j.Level;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.core.LoggerContext;
+import org.apache.logging.log4j.core.config.Configuration;
+import org.apache.logging.log4j.core.config.LoggerConfig;
+
 /**
  * Problem launcher application.
  *
@@ -11,6 +20,18 @@ public class App {
     public static final String RED = "\u001B[31m";
     public static final String GREEN = "\u001B[32m";
     public static final String BLUE = "\u001B[34m";
+
+    private static Map<String, Level> loglevels;
+
+    static {
+        loglevels = new HashMap<>();
+        loglevels.put("debug", Level.DEBUG);
+        loglevels.put("info", Level.INFO);
+        loglevels.put("warn", Level.WARN);
+        loglevels.put("error", Level.ERROR);
+        loglevels.put("fatal", Level.FATAL);
+        loglevels.put("trace", Level.TRACE);
+    }
 
     public static void RunProblem(int problem_id) {
         Euler problem = null;
@@ -48,7 +69,21 @@ public class App {
             GREEN + answer + RESET + String.format(" (%.4f ms)", duration));
     }
 
-    public static void main( String[] args ) {
+    public static void main(String[] args) {
+        // Set loglevel from environment variable.
+        String loglevel = System.getenv("EULER_LOGLEVEL");
+        if (loglevel != null) {
+            loglevel = loglevel.toLowerCase();
+        }
+        if (loglevels.containsKey(loglevel)) {
+            // https://stackoverflow.com/a/23434603/19266495
+            LoggerContext ctx = (LoggerContext)LogManager.getContext(false);
+            Configuration config = ctx.getConfiguration();
+            LoggerConfig loggerConfig = config.getLoggerConfig(LogManager.ROOT_LOGGER_NAME);
+            loggerConfig.setLevel(loglevels.get(loglevel));
+            ctx.updateLoggers();
+        }
+
         // Provide usage message if no arguments are provided.
         if (args.length == 0) {
             System.err.println("Usage: app <problem-id> [<problem-id> [...]]");

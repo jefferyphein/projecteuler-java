@@ -1,5 +1,8 @@
 package projecteuler.app;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import java.util.Vector;
 import java.io.IOException;
 import java.nio.file.Files;
@@ -8,6 +11,8 @@ import java.util.stream.Stream;
 import java.util.stream.IntStream;
 
 public class Lib {
+    private static final Logger logger = LogManager.getLogger("Lib");
+
     public static boolean isPalindrome(long N) {
         String strN = Long.toString(N);
         return strN.equals(new StringBuilder(strN).reverse().toString());
