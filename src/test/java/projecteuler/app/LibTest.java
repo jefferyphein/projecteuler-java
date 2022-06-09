@@ -160,4 +160,17 @@ public class LibTest {
             }
         }
     }
+
+    @Test
+    public void testCollatzWithLookup() {
+        int[] collatz = new int[10];
+        collatz[1] = 1;
+
+        int[] answer = {0,1,2,8,3,6,9,17,4,20};
+
+        for (int i=0; i<collatz.length; i++) {
+            collatz[i] = Lib.collatzWithLookup(i, collatz);
+            assertEquals(answer[i], collatz[i]);
+        }
+    }
 }
