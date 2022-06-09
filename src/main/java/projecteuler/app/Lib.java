@@ -48,6 +48,30 @@ public class Lib {
         return answer;
     }
 
+    public static int collatzWithLookup(long n, int[] lut) {
+        if (n <= 0) return 0;
+
+        boolean within_bounds = n < (long)lut.length;
+
+        if (within_bounds) {
+            // Return the value if its already in the table.
+            int index = (int)n;
+            if (lut[index] > 0) return lut[index];
+        }
+
+        // Determine length of the next Collatz number.
+        long k = (n % 2 == 0) ? n/2 : 3*n+1;
+        int length = 1 + collatzWithLookup(k, lut);
+
+        if (within_bounds) {
+            // Update the table if we're within bounds.
+            int index = (int)n;
+            lut[index] = length;
+        }
+
+        return length;
+    }
+
     public static int[] primesUpTo(int upto) {
         // No primes less than 2.
         if (upto < 2) {
